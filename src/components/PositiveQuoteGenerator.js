@@ -1,16 +1,12 @@
 import React, { useState } from "react";
 const PositiveQuotesGenerator = () => {
   const [quote, setQuote] = useState("");
-  const headers = {
-    "Access-Control-Allow-Origin": "*",
-  };
+
   const getQuote = async () => {
-    const response = await fetch("http://localhost:9000/getPositiveQuotes", {
-      headers,
-    });
+    const response = await fetch("/.netlify/functions/getPositiveQuotes");
     const result = await response.json();
     console.log(result);
-    setQuote(result);
+    setQuote(result.quotes[0]);
   };
   return (
     <div
@@ -22,13 +18,12 @@ const PositiveQuotesGenerator = () => {
         height: "100%",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "space-between",
+        justifyContent: "space-evenly",
         alignItems: "center",
       }}
     >
       <span
         style={{
-          paddingTop: 50,
           color: "#fff",
           fontSize: 80,
         }}
