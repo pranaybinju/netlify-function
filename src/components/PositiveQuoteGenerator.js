@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 const PositiveQuotesGenerator = () => {
   const [quote, setQuote] = useState("");
 
+  useEffect(() => {
+    getQuote();
+  }, []);
   const getQuote = async () => {
     const response = await fetch("/.netlify/functions/getPositiveQuotes");
     const result = await response.json();
@@ -28,7 +31,8 @@ const PositiveQuotesGenerator = () => {
           color: "#fff",
           fontSize: 50,
           textAlign: "center",
-          padding: 20,
+          padding: 40,
+          height: "40%",
         }}
       >
         {quote}
