@@ -6,7 +6,7 @@ const PositiveQuotesGenerator = () => {
     const response = await fetch("/.netlify/functions/getPositiveQuotes");
     const result = await response.json();
     console.log(result);
-    setQuote(result.quotes[0]);
+    setQuote(result.quote);
   };
   return (
     <div
@@ -18,22 +18,24 @@ const PositiveQuotesGenerator = () => {
         height: "100%",
         display: "flex",
         flexDirection: "column",
+        flexWrap: "wrap",
         justifyContent: "space-evenly",
         alignItems: "center",
       }}
     >
-      <span
+      <div
         style={{
           color: "#fff",
-          fontSize: 80,
+          fontSize: 50,
+          textAlign: "center",
+          padding: 20,
         }}
       >
         {quote}
-      </span>
+      </div>
       <button
         style={{
           outline: "none",
-
           fontSize: 20,
           fontWeight: 800,
           color: "#fff",
@@ -41,6 +43,7 @@ const PositiveQuotesGenerator = () => {
           border: "5px solid",
           padding: "1em 1.5em",
           borderRadius: "2rem",
+
           transform: { translateX: "-50%" },
         }}
         onClick={getQuote}
